@@ -21,4 +21,18 @@ axiom evolution, and self-governance. Running since March 2026.
 ## Closest academic references
 - Park et al. 2023 — Generative Agents
 - Voyager (Wang et al. 2023)
-- 
+
+ I am testing: 1. Persistence
+What changes when agents remember prior states?
+
+2. Shared writable substrate
+What changes when multiple agents can write into the same world?
+
+3. Locality
+What changes when the environment is physically bounded and under your control?
+
+4. Identity continuity
+What changes when agents can refer back to prior diaries, axioms, and kernels?
+
+5. Norm formation
+What patterns emerge when no one hardcodes all the rules? 
