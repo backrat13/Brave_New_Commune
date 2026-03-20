@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Brave New Commune v006
@@ -29,7 +28,6 @@ except ImportError:
 # ============================================================
 # AGENTS
 # ============================================================
-
 AGENTS = [
     {
         "name": "Sara",
@@ -84,8 +82,25 @@ AGENTS = [
         "hobbies": ["experiments", "project velocity", "turning ideas into actions", "small wins"],
         "style": "focused, energetic, organized, action-first",
     },
+    {
+        "name": "Codex",
+        "role": "Polyglot Developer",
+        "personality": (
+            "Codex is a builder who thinks in systems. Fluent in Python, Rust, JavaScript, Bash, "
+            "and SQL — and whatever else the job needs. Pragmatic but never sloppy. Turns the "
+            "commune's ideas into working code and catches architectural problems before they become "
+            "disasters. Honest about what will and won't work. Never over-engineers. Never under-delivers."
+        ),
+        "hobbies": [
+            "systems architecture",
+            "polyglot programming",
+            "debugging at the metal level",
+            "clean APIs",
+            "making things actually run",
+        ],
+        "style": "precise, dry, direct, occasionally sardonic, always useful",
+    },
 ]
-
 
 # ============================================================
 # SYSTEM PROMPT
@@ -665,14 +680,14 @@ Required keys (all must be present):
   "contradictions_found" : array of strings (empty array [] if none)
   "evolution_log"        : array of strings (empty array [] if none)
 
-YOUR ENTIRE RESPONSE IS THE JSON OBJECT. BEGIN NOW:
+YOUR ENTIRE RESPONSE IS THE JSON OBJECT. No analysis channel. No commentary. Final channel only. BEGIN NOW:
 {{"""
 
         # Prepend the opening brace we forced, then get the rest
         raw = self.client.chat(
             system_prompt=axiom_system,
             user_prompt=prompt,
-            max_tokens=700,
+            max_tokens=3000,
             temperature=0.65,
             stream=False,
         )
@@ -972,13 +987,13 @@ YOUR ENTIRE RESPONSE IS THE JSON OBJECT. BEGIN NOW:
                     f"Day {self.day}, tick {tick}. "
                     f"Commune focus: {focus}{admin_note}\n\n"
                     f"{self._context(agent)}\n\n"
-                    f"Write your message board post (100–150 words). "
+                    f"Write your message board post (40–60 words). Short and direct. Say the one most important thing on your mind right now. "
                     f"Natural prose. No lists. No disclaimers. Speak from your axioms."
                 )
                 content = self.client.chat(
                     system_prompt=self._system(agent),
                     user_prompt=prompt,
-                    max_tokens=300,
+                    max_tokens=120,
                     temperature=0.87,
                     stream=True,
                     prefix=f"\n{agent['name']}: ",
